@@ -40,7 +40,7 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
     ): View? {
         binding = FragmentMainBinding.inflate(layoutInflater)
         setupRecyclerView()
-        val repository = Repository()
+        val repository = Repository(this.requireContext())
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         viewModel.getPost("in", "d4c4e2a3e66e4f4faebe8b09d000ccfb")

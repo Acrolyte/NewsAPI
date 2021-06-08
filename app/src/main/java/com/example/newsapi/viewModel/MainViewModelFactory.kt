@@ -1,4 +1,4 @@
-package com.example.newsapi
+package com.example.newsapi.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,5 +1,8 @@
 package com.example.newsapi.adapter
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +16,8 @@ import com.example.newsapi.databinding.NewsItemBinding
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
-class MyAdapter(private var myList: List<Article>, private var mlistener: OnItemClickListener) :
+
+class MyAdapter(private var myList: List<Article>, private var context: Context) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: NewsItemBinding, itemView: View) :
@@ -47,10 +51,14 @@ class MyAdapter(private var myList: List<Article>, private var mlistener: OnItem
         holder.binding.tvItemTitle.text = myList[position].title
         Picasso.get().load(myList[position].urlToImage).into(holder.binding.ivItemImage)
         holder.itemView.setOnClickListener {
-            var bundle = Bundle()
-            bundle.putString("url",myList[position].url.toString())
-            it.findNavController().navigate(R.id.action_mainFragment_to_webFragment,bundle)
-            Log.d("working", myList[position].url)
+            if(!checkConnectivity()){
+                Snackbar.make(it,"Please check your Internet connection!!",Snackbar.LENGTH_SHORT).show()
+            }else {
+                var bundle = Bundle()
+                bundle.putString("url", myList[position].url.toString())
+                it.findNavController().navigate(R.id.action_mainFragment_to_webFragment, bundle)
+                Log.d("working", myList[position].url)
+            }
         }
         holder.itemView.setOnLongClickListener{
             var timestamp = myList[position].publishedAt.replace('T',' ').replace('Z',' ')
@@ -58,6 +66,15 @@ class MyAdapter(private var myList: List<Article>, private var mlistener: OnItem
             return@setOnLongClickListener true
         }
     }
+
+    fun checkConnectivity() : Boolean{
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (connectivityManager is ConnectivityManager){
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        } else false
+    }
+
 
     override fun getItemCount(): Int {
         return myList.size

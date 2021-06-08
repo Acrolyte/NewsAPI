@@ -3,12 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    tools:context=".ui.MainFragment">
+
+    <ProgressBar
+        android:id="@+id/pb_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/blueter"
+        android:background="@color/bluelight"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main"
+        android:background="@color/bluelight"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/pb_bar"
         android:padding="4dp"/>
 
 </RelativeLayout>

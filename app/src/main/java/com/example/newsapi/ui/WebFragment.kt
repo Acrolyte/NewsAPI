@@ -1,4 +1,4 @@
-package com.example.newsapi
+package com.example.newsapi.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.newsapi.databinding.FragmentWebBinding
+import com.example.newsapi.viewModel.SharedViewModel
 
 
 class WebFragment : Fragment() {

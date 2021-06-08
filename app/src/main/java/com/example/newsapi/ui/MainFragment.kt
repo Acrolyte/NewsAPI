@@ -1,9 +1,10 @@
-package com.example.newsapi
+package com.example.newsapi.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +16,8 @@ import com.example.newsapi.Models.Article
 import com.example.newsapi.adapter.MyAdapter
 import com.example.newsapi.databinding.FragmentMainBinding
 import com.example.newsapi.repository.Repository
+import com.example.newsapi.viewModel.MainViewModel
+import com.example.newsapi.viewModel.MainViewModelFactory
 
 class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
 
@@ -23,7 +26,7 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
     private lateinit var navController: NavController
     private var exlist = emptyList<Article>()
     private val myAdapter by lazy {
-        MyAdapter(exlist,this)
+        MyAdapter(exlist,this.requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +40,6 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
     ): View? {
         binding = FragmentMainBinding.inflate(layoutInflater)
         setupRecyclerView()
-
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
@@ -46,6 +48,7 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
         viewModel.myresponse.observe(viewLifecycleOwner, Observer { response ->
             if (response.isSuccessful) {
                 exlist = response.body()?.articles!!
+                binding.pbBar.visibility = ProgressBar.GONE
                 response.body()?.let {
                     myAdapter?.setData(exlist)
                 }

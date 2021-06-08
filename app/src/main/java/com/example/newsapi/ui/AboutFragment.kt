@@ -1,4 +1,4 @@
-package com.example.newsapi
+package com.example.newsapi.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.newsapi.databinding.FragmentLicenseBinding
+import com.example.newsapi.databinding.FragmentAboutBinding
 
-class LicenseFragment : Fragment() {
+class AboutFragment : Fragment() {
 
-    private lateinit var binding: FragmentLicenseBinding
+    private lateinit var binding: FragmentAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class LicenseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentLicenseBinding.inflate(layoutInflater)
+        binding = FragmentAboutBinding.inflate(layoutInflater)
         return binding.root
     }
 

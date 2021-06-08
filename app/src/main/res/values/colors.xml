@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bluepri">#1e88e5</color>
     <color name="bluesec">#005cb2</color>
+    <color name="blueter">#0d47a1</color>
+    <color name="bluelight">#6ec6ff</color>
+
+
 </resources>

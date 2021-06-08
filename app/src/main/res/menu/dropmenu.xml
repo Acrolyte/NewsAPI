@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/btn_option3"
+        android:title="User details"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/btn_option1"
         android:title="Licenses"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/btn_option2"
-        android:title="About"
+        android:title="About App"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/btn_option4"
+        android:title="Sign Out"
         app:showAsAction="never"/>
 </menu>

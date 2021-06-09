@@ -1,7 +1,9 @@
 package com.example.newsapi.ui
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -17,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.regex.Pattern
+
 
 class SignInFragment : Fragment() {
 
@@ -64,9 +67,10 @@ class SignInFragment : Fragment() {
             if(email.isEmpty()||passw.isEmpty()||cnfpassw.isEmpty()){
                 Toast.makeText(this.context,"Email and password is mandatory.",Toast.LENGTH_SHORT).show()
             }else {
-                if (email.isNotEmpty()) {
+                if (checkemail(email)) {
                     userId = email.substring(0, email.indexOf('@'))
-                }
+                }else
+                    Toast.makeText(this.context,"Given email is invalid.",Toast.LENGTH_LONG).show()
                 if(!validatepass(passw))
                     Toast.makeText(this.context,"Password must contain a digit, a capital letter and should be of length 8-20.",Toast.LENGTH_LONG).show()
                 else {
@@ -115,5 +119,12 @@ class SignInFragment : Fragment() {
         if(pass.isEmpty()) return false
         var m = p.matcher(pass)
         return m.matches()
+    }
+    fun checkemail(target: CharSequence?): Boolean {
+        return if (TextUtils.isEmpty(target)) {
+            false
+        } else {
+            Patterns.EMAIL_ADDRESS.matcher(target).matches()
+        }
     }
 }

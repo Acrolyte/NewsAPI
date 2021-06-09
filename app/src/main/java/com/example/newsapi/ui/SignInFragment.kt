@@ -16,6 +16,7 @@ import com.example.newsapi.databinding.FragmentSignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.regex.Pattern
 
 class SignInFragment : Fragment() {
 
@@ -60,40 +61,59 @@ class SignInFragment : Fragment() {
             val address : String = binding.etAddress.text.toString().trim()
             val bio : String = binding.etBio.text.toString().trim()
             var userId : String = ""
-            if(email.isNotEmpty()){
-                userId  = email.substring(0,email.indexOf('@'))
-            }
-
+            if(email.isEmpty()||passw.isEmpty()||cnfpassw.isEmpty()){
+                Toast.makeText(this.context,"Email and password is mandatory.",Toast.LENGTH_SHORT).show()
+            }else {
+                if (email.isNotEmpty()) {
+                    userId = email.substring(0, email.indexOf('@'))
+                }
+                if(!validatepass(passw))
+                    Toast.makeText(this.context,"Password must contain a digit, a capital letter and should be of length 8-20.",Toast.LENGTH_LONG).show()
+                else {
 //            Log.d("values","$email $passw $cnfpassw $age $phone $address $bio")
 
-            if (passw.compareTo(cnfpassw)==0) {
-                val user = Users(email, passw, cnfpassw, age, phone, address, bio)
-                reference.child(userId).setValue(user).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        auth.createUserWithEmailAndPassword(email, passw).addOnCompleteListener{
-                                task->
-                            if(task.isSuccessful){
-                                navController.navigate(R.id.action_signInFragment_to_loginFragment)
-                            }else{
-                                val exc : String = task.exception.toString()
-                                val ind : Int = exc.indexOf(':')+2
-                                Toast.makeText(this.context,exc.substring(ind),Toast.LENGTH_SHORT).show()
-                                Log.d("error", "error in creation", task.exception)
+                    if (passw.compareTo(cnfpassw) == 0) {
+                        val user = Users(email, passw, cnfpassw, age, phone, address, bio)
+                        reference.child(userId).setValue(user).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                auth.createUserWithEmailAndPassword(email, passw)
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            navController.navigate(R.id.action_signInFragment_to_loginFragment)
+                                        } else {
+                                            val exc: String = task.exception.toString()
+                                            val ind: Int = exc.indexOf(':') + 2
+                                            Toast.makeText(
+                                                this.context,
+                                                exc.substring(ind),
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            Log.d("error", "error in creation", task.exception)
+                                        }
+                                    }
                             }
                         }
+                    } else {
+                        Toast.makeText(
+                            this.context,
+                            "Passwords doesn't match! Please try again.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-            } else {
-                Toast.makeText(
-                    this.context,
-                    "Passwords doesn't match! Please try again.",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
+
         }
 
         binding.tvTextclickable.setOnClickListener {
             navController.navigate(R.id.action_signInFragment_to_loginFragment)
         }
+    }
+    fun validatepass(pass: String) : Boolean{
+        var regex = "^(?=.*[0-9])(?=.*[A-Z]).{8,20}$"
+        var p : Pattern = Pattern.compile(regex)
+        if(pass.isEmpty()) return false
+        var m = p.matcher(pass)
+        return m.matches()
     }
 }

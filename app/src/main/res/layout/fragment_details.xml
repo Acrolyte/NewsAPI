@@ -73,7 +73,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_toEndOf="@id/tv_email_title"
                         android:fontFamily="@font/cabin"
-                        android:text="Blank@blah.com"
+                        android:text="email@email.com"
                         android:textColor="@color/white"
                         android:textSize="22sp" />
 
@@ -100,7 +100,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_toEndOf="@id/tv_age_title"
                         android:fontFamily="@font/cabin"
-                        android:text="23"
+                        android:text="00"
                         android:textColor="@color/white"
                         android:textSize="22sp" />
 

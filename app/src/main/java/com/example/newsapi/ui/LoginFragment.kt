@@ -25,10 +25,12 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(layoutInflater)
         return binding.root
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         menu.clear()
@@ -40,15 +42,21 @@ class LoginFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
 
-        binding.loginButton.setOnClickListener() {
-            val email: String = binding.etEmail.text.toString().trim()
-            val passw: String = binding.etPassword.text.toString().trim()
+        if (auth.currentUser != null) {
+            navController.navigate(R.id.action_loginFragment_to_mainFragment)
+        } else {
+            binding.loginButton.setOnClickListener() {
+                val email: String = binding.etEmail.text.toString().trim()
+                val passw: String = binding.etPassword.text.toString().trim()
 
-            auth.signInWithEmailAndPassword(email, passw).addOnCompleteListener { task ->
-                if (task.isSuccessful){
-                    navController.navigate(R.id.action_loginFragment_to_mainFragment)
-                }else{
-                    Toast.makeText(this.context,"Authentication Error!",Toast.LENGTH_SHORT).show()
+
+                auth.signInWithEmailAndPassword(email, passw).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        navController.navigate(R.id.action_loginFragment_to_mainFragment)
+                    } else {
+                        Toast.makeText(this.context, "Authentication Error!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
             }
         }

@@ -5,7 +5,7 @@
         <item name="android:forceDarkAllowed">false</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/bluepri</item>
-        <item name="colorPrimaryVariant">@color/bluesec</item>
+        <item name="colorPrimaryVariant">@color/bluepri</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

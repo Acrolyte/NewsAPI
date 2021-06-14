@@ -26,7 +26,7 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var rootNode: FirebaseDatabase
     private lateinit var reference: DatabaseReference
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var navController: NavController
 
     override fun onCreateView(
@@ -36,10 +36,12 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(layoutInflater)
         return binding.root
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
     override fun onPrepareOptionsMenu(menu: Menu) {
         super.onPrepareOptionsMenu(menu)
         menu.clear()
@@ -56,28 +58,35 @@ class SignInFragment : Fragment() {
 
         binding.signUpButton.setOnClickListener() {
 
-            val email : String = binding.etEmail.text.toString().trim()
-            val passw : String = binding.etPassword.text.toString().trim()
-            val cnfpassw : String = binding.etCnfrmpasswrd.text.toString().trim()
-            val age : String = binding.etAge.text.toString().trim()
-            val phone : String = binding.etPhone.text.toString().trim()
-            val address : String = binding.etAddress.text.toString().trim()
-            val bio : String = binding.etBio.text.toString().trim()
-            var userId : String = ""
-            if(email.isEmpty()||passw.isEmpty()||cnfpassw.isEmpty()){
-                Toast.makeText(this.context,"Email and password is mandatory.",Toast.LENGTH_SHORT).show()
-            }else {
+            val email: String = binding.etEmail.text.toString().trim()
+            val passw: String = binding.etPassword.text.toString().trim()
+            val cnfpassw: String = binding.etCnfrmpasswrd.text.toString().trim()
+            val age: String = binding.etAge.text.toString().trim()
+            val phone: String = binding.etPhone.text.toString().trim()
+            val address: String = binding.etAddress.text.toString().trim()
+            val bio: String = binding.etBio.text.toString().trim()
+            var userId: String = ""
+            if (email.isEmpty() || passw.isEmpty() || cnfpassw.isEmpty()) {
+                Toast.makeText(this.context, "Email and password is mandatory.", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
                 if (checkemail(email)) {
                     userId = email.substring(0, email.indexOf('@'))
-                }else
-                    Toast.makeText(this.context,"Given email is invalid.",Toast.LENGTH_LONG).show()
-                if(!validatepass(passw))
-                    Toast.makeText(this.context,"Password must contain a digit, a capital letter and should be of length 8-20.",Toast.LENGTH_LONG).show()
+                } else
+                    Toast.makeText(this.context, "Given email is invalid.", Toast.LENGTH_LONG)
+                        .show()
+                if (!validatepass(passw))
+                    Toast.makeText(
+                        this.context,
+                        "Password must contain a digit, a capital letter and should be of length 8-20.",
+                        Toast.LENGTH_LONG
+                    ).show()
                 else {
 //            Log.d("values","$email $passw $cnfpassw $age $phone $address $bio")
 
                     if (passw.compareTo(cnfpassw) == 0) {
                         val user = Users(email, passw, cnfpassw, age, phone, address, bio)
+
                         reference.child(userId).setValue(user).addOnCompleteListener {
                             if (it.isSuccessful) {
                                 auth.createUserWithEmailAndPassword(email, passw)
@@ -113,13 +122,15 @@ class SignInFragment : Fragment() {
             navController.navigate(R.id.action_signInFragment_to_loginFragment)
         }
     }
-    fun validatepass(pass: String) : Boolean{
+
+    fun validatepass(pass: String): Boolean {
         var regex = "^(?=.*[0-9])(?=.*[A-Z]).{8,20}$"
-        var p : Pattern = Pattern.compile(regex)
-        if(pass.isEmpty()) return false
+        var p: Pattern = Pattern.compile(regex)
+        if (pass.isEmpty()) return false
         var m = p.matcher(pass)
         return m.matches()
     }
+
     fun checkemail(target: CharSequence?): Boolean {
         return if (TextUtils.isEmpty(target)) {
             false

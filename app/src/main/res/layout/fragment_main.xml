@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bluelight"
     tools:context=".ui.MainFragment">
 
     <ProgressBar
@@ -14,12 +15,17 @@
         android:background="@color/bluelight"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main"
-        android:background="@color/bluelight"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pb_bar"
-        android:padding="4dp"/>
+        android:src="@drawable/twig"
+        android:alpha="0.4"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/pb_bar"
+            android:padding="4dp"/>
 
 </RelativeLayout>

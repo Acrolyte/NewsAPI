@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@color/bluepri"
             android:fontFamily="@font/cabin_medium"
+            android:alpha="0.9"
             android:padding="10dp"
             android:text="default_text"
             android:textColor="@color/white"

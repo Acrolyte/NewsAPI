@@ -1,6 +1,8 @@
 package com.example.newsapi.ui
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -12,6 +14,7 @@ import androidx.navigation.Navigation
 import com.example.newsapi.R
 import com.example.newsapi.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import java.util.regex.Pattern
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -23,6 +26,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater)
+
         return binding.root
     }
 
@@ -49,20 +53,44 @@ class LoginFragment : Fragment() {
                 val email: String = binding.etEmail.text.toString().trim()
                 val passw: String = binding.etPassword.text.toString().trim()
 
-
-                auth.signInWithEmailAndPassword(email, passw).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        navController.navigate(R.id.action_loginFragment_to_mainFragment)
-                    } else {
-                        Toast.makeText(this.context, "Authentication Error!", Toast.LENGTH_SHORT)
-                            .show()
+                if (checkemail(email) && validatepass(passw))
+                    auth.signInWithEmailAndPassword(email, passw).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            navController.navigate(R.id.action_loginFragment_to_mainFragment)
+                        } else {
+                            Toast.makeText(
+                                this.context,
+                                "Authentication Error!",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
                     }
+                else{
+                    Toast.makeText(this.context,"Wrong credentials!",Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
         binding.tvTextclickable.setOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_signInFragment)
+        }
+    }
+
+    fun validatepass(pass: String): Boolean {
+        var regex = "^(?=.*[0-9])(?=.*[A-Z]).{8,20}$"
+        var p: Pattern = Pattern.compile(regex)
+        if (pass.isEmpty()) return false
+        var m = p.matcher(pass)
+        return m.matches()
+    }
+
+
+    fun checkemail(target: CharSequence?): Boolean {
+        return if (TextUtils.isEmpty(target)) {
+            false
+        } else {
+            Patterns.EMAIL_ADDRESS.matcher(target).matches()
         }
     }
 }

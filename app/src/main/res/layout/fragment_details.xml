@@ -6,6 +6,11 @@
     android:background="@color/bluelight"
     tools:context=".ui.DetailsFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/twig"
+        android:alpha="0.4"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -63,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:text="Email: "
-                        android:textColor="@color/black"
+                        android:textColor="@color/bluepri"
                         android:textSize="24sp" />
 
                     <TextView
@@ -74,7 +79,7 @@
                         android:layout_toEndOf="@id/tv_email_title"
                         android:fontFamily="@font/cabin"
                         android:text="email@email.com"
-                        android:textColor="@color/white"
+                        android:textColor="@color/bluesec"
                         android:textSize="22sp" />
 
                 </RelativeLayout>
@@ -90,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:text="Age: "
-                        android:textColor="@color/black"
+                        android:textColor="@color/bluepri"
                         android:textSize="24sp" />
 
                     <TextView
@@ -101,7 +106,7 @@
                         android:layout_toEndOf="@id/tv_age_title"
                         android:fontFamily="@font/cabin"
                         android:text="00"
-                        android:textColor="@color/white"
+                        android:textColor="@color/bluesec"
                         android:textSize="22sp" />
 
                 </RelativeLayout>
@@ -117,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:text="Phone: "
-                        android:textColor="@color/black"
+                        android:textColor="@color/bluepri"
                         android:textSize="24sp" />
 
                     <TextView
@@ -128,7 +133,7 @@
                         android:layout_toEndOf="@id/tv_phone_title"
                         android:fontFamily="@font/cabin"
                         android:text="000000000"
-                        android:textColor="@color/white"
+                        android:textColor="@color/bluesec"
                         android:textSize="22sp" />
 
                 </RelativeLayout>
@@ -144,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:text="Address: "
-                        android:textColor="@color/black"
+                        android:textColor="@color/bluepri"
                         android:textSize="24sp" />
 
                     <TextView
@@ -155,7 +160,7 @@
                         android:layout_toEndOf="@id/tv_address_title"
                         android:fontFamily="@font/cabin"
                         android:text="Somewhere"
-                        android:textColor="@color/white"
+                        android:textColor="@color/bluesec"
                         android:textSize="22sp" />
 
                 </RelativeLayout>
@@ -171,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cabin"
                         android:text="Bio: "
-                        android:textColor="@color/black"
+                        android:textColor="@color/bluepri"
                         android:textSize="24sp" />
 
                     <TextView
@@ -182,7 +187,7 @@
                         android:layout_toEndOf="@id/tv_bio_title"
                         android:fontFamily="@font/cabin"
                         android:text="Something"
-                        android:textColor="@color/white"
+                        android:textColor="@color/bluesec"
                         android:textSize="22sp" />
 
                 </RelativeLayout>

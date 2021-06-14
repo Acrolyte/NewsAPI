@@ -22,6 +22,7 @@ class DetailsFragment : Fragment() {
     private lateinit var rootnode: FirebaseDatabase
     private lateinit var reference: DatabaseReference
     private lateinit var user: FirebaseUser
+    private lateinit var auth: FirebaseAuth
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,7 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         rootnode = FirebaseDatabase.getInstance()
+        auth = FirebaseAuth.getInstance()
         user = FirebaseAuth.getInstance().currentUser!!
         val email = user.email!!
         val userId : String = email.substring(0,email.indexOf('@'))
@@ -68,6 +70,7 @@ class DetailsFragment : Fragment() {
             Log.d("snapshot",it.value.toString())
         }
         binding.logoutButton.setOnClickListener{
+            auth.signOut()
             navController.navigate(R.id.action_detailsFragment_to_loginFragment)
         }
     }

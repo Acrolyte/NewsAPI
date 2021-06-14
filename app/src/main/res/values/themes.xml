@@ -3,7 +3,7 @@
     <style name="Theme.NewsAPI" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/bluepri</item>
-        <item name="colorPrimaryVariant">@color/bluesec</item>
+        <item name="colorPrimaryVariant">@color/bluepri</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

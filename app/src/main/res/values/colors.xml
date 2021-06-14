@@ -7,10 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bluepri">#1e88e5</color>
-    <color name="bluesec">#005cb2</color>
-    <color name="blueter">#0d47a1</color>
-    <color name="bluelight">#6ec6ff</color>
+    <color name="bluepri">#023246</color>
+    <color name="bluesec">#d4d4ce</color>
+    <color name="blueter">#f6f6f6</color>
+    <color name="bluelight">#287094</color>
 
 
 </resources>

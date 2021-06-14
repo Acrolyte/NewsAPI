@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -26,7 +27,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(layoutInflater)
-
         return binding.root
     }
 
@@ -50,6 +50,7 @@ class LoginFragment : Fragment() {
             navController.navigate(R.id.action_loginFragment_to_mainFragment)
         } else {
             binding.loginButton.setOnClickListener() {
+                binding.loginButton.visibility = Button.GONE
                 val email: String = binding.etEmail.text.toString().trim()
                 val passw: String = binding.etPassword.text.toString().trim()
 
@@ -58,16 +59,13 @@ class LoginFragment : Fragment() {
                         if (task.isSuccessful) {
                             navController.navigate(R.id.action_loginFragment_to_mainFragment)
                         } else {
-                            Toast.makeText(
-                                this.context,
-                                "Authentication Error!",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+                            binding.loginButton.visibility = Button.VISIBLE
+                            showToast("Authentication Error!")
                         }
                     }
                 else{
-                    Toast.makeText(this.context,"Wrong credentials!",Toast.LENGTH_SHORT).show()
+                    showToast("Wrong credentials!")
+                    binding.loginButton.visibility = Button.VISIBLE
                 }
             }
         }
@@ -75,6 +73,10 @@ class LoginFragment : Fragment() {
         binding.tvTextclickable.setOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_signInFragment)
         }
+    }
+
+    fun showToast(string: String) {
+        Toast.makeText(this.context, string, Toast.LENGTH_SHORT).show()
     }
 
     fun validatepass(pass: String): Boolean {

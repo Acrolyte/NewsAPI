@@ -50,7 +50,7 @@ class DetailsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         user = FirebaseAuth.getInstance().currentUser!!
         val email = user.email!!
-        val userId : String = email.substring(0,email.indexOf('@'))
+        val userId : String = auth.currentUser!!.uid
         reference = rootnode.getReference("Users").child(userId)
 
         reference.get().addOnSuccessListener {

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -19,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.regex.Pattern
-
 
 class SignInFragment : Fragment() {
 
@@ -54,10 +54,8 @@ class SignInFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         navController = Navigation.findNavController(view)
 
-
-
         binding.signUpButton.setOnClickListener() {
-
+            binding.signUpButton.visibility = Button.GONE
             val email: String = binding.etEmail.text.toString().trim()
             val passw: String = binding.etPassword.text.toString().trim()
             val cnfpassw: String = binding.etCnfrmpasswrd.text.toString().trim()
@@ -67,59 +65,58 @@ class SignInFragment : Fragment() {
             val bio: String = binding.etBio.text.toString().trim()
             var userId: String = ""
             if (email.isEmpty() || passw.isEmpty() || cnfpassw.isEmpty()) {
-                Toast.makeText(this.context, "Email and password is mandatory.", Toast.LENGTH_SHORT)
-                    .show()
+                binding.signUpButton.visibility = Button.VISIBLE
+                showToast("Email and password is mandatory.")
+            } else if (!checkemail(email)) {
+                binding.signUpButton.visibility = Button.VISIBLE
+                showToast("Given email is invalid.")
+            } else if (!validatepass(passw)) {
+                binding.signUpButton.visibility = Button.VISIBLE
+                showToast("Password must contain a digit, a capital letter and should be of length 8-20.")
+            } else if (!validatephone(phone)) {
+                binding.signUpButton.visibility = Button.VISIBLE
+                showToast("Please enter a valid phone number!")
+            } else if (!validateage(age)) {
+                binding.signUpButton.visibility = Button.VISIBLE
+                showToast("Please enter a valid age!")
+            } else if (!(passw.compareTo(cnfpassw) == 0)) {
+                binding.signUpButton.visibility = Button.VISIBLE
+                showToast("Passwords doesn't match! Please try again.")
             } else {
-                if (checkemail(email)) {
-                    userId = email.substring(0, email.indexOf('@'))
-                } else
-                    Toast.makeText(this.context, "Given email is invalid.", Toast.LENGTH_LONG)
-                        .show()
-                if (!validatepass(passw))
-                    Toast.makeText(
-                        this.context,
-                        "Password must contain a digit, a capital letter and should be of length 8-20.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                else {
-//            Log.d("values","$email $passw $cnfpassw $age $phone $address $bio")
+                val user = Users(email, passw, cnfpassw, age, phone, address, bio)
 
-                    if (passw.compareTo(cnfpassw) == 0) {
-                        val user = Users(email, passw, cnfpassw, age, phone, address, bio)
-
-                        reference.child(userId).setValue(user).addOnCompleteListener {
-                            if (it.isSuccessful) {
-                                auth.createUserWithEmailAndPassword(email, passw)
-                                    .addOnCompleteListener { task ->
-                                        if (task.isSuccessful) {
-                                            navController.navigate(R.id.action_signInFragment_to_loginFragment)
-                                        } else {
-                                            val exc: String = task.exception.toString()
-                                            val ind: Int = exc.indexOf(':') + 2
-                                            Toast.makeText(
-                                                this.context,
-                                                exc.substring(ind),
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                            Log.d("error", "error in creation", task.exception)
-                                        }
-                                    }
-                            }
+                auth.createUserWithEmailAndPassword(email, passw)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            userId = auth.currentUser!!.uid
+                            reference.child(userId).setValue(user)
+                            navController.navigate(R.id.action_signInFragment_to_loginFragment)
+                        } else {
+                            binding.signUpButton.visibility = Button.VISIBLE
+                            val exc: String = task.exception.toString()
+                            val ind: Int = exc.indexOf(':') + 2
+                            showToast(exc.substring(ind))
+                            Log.d("error", "error in creation", task.exception)
                         }
-                    } else {
-                        Toast.makeText(
-                            this.context,
-                            "Passwords doesn't match! Please try again.",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
-                }
             }
-
         }
 
         binding.tvTextclickable.setOnClickListener {
             navController.navigate(R.id.action_signInFragment_to_loginFragment)
+        }
+    }
+
+
+    fun showToast(string: String) {
+        Toast.makeText(this.context, string, Toast.LENGTH_SHORT).show()
+    }
+    fun validateage(age: String): Boolean{
+        return try {
+            var a_ge =  Integer.valueOf(age)
+            a_ge in 0..120
+        } catch (e: NumberFormatException) {
+            false
         }
     }
 
@@ -129,6 +126,14 @@ class SignInFragment : Fragment() {
         if (pass.isEmpty()) return false
         var m = p.matcher(pass)
         return m.matches()
+    }
+
+    fun validatephone(phone: String): Boolean {
+        return if (TextUtils.isEmpty(phone)) {
+            false
+        } else {
+            Patterns.PHONE.matcher(phone).matches()
+        }
     }
 
     fun checkemail(target: CharSequence?): Boolean {

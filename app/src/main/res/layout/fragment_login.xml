@@ -84,26 +84,39 @@
 
             </RelativeLayout>
 
-
-            <android.widget.Button
-                android:id="@+id/login_button"
+            <RelativeLayout
+                android:id="@+id/lay3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lay2"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/bluepri"
-                android:fontFamily="@font/comfortaa"
-                android:text="Login"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:layout_marginHorizontal="20dp">
+
+
+                <android.widget.Button
+                    android:id="@+id/login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/bluepri"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/blueter"/>
+
+            </RelativeLayout>
 
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/login_button"
+                android:layout_below="@id/lay3"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="20dp">

@@ -3,56 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     tools:context=".ui.AboutFragment">
 
-
-    <TextView
-        android:id="@+id/tv_about"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="72dp"
-        android:fontFamily="@font/comfortaa"
-        android:textColor="@color/black"
-        android:text="About our app"
-        android:textSize="24dp" />
-
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_below="@+id/tv_about"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:fontFamily="@font/comfortaa"
-        android:layout_marginBottom="20dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/bluepri"
-        android:gravity="center_horizontal"
-        android:text="A bunch of our country's top insights to enjoy with your coffee. Updated timely to keep you scheduled ;)"
-        android:textSize="16dp"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_marginBottom="20dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_below="@+id/tv_description"
-        android:src="@drawable/team" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_image"
-        android:gravity="center_horizontal"
-        android:layout_marginHorizontal="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/comfortaa"
-        android:layout_centerHorizontal="true"
-        android:text="Created by:-\n Acrolyte \n C-420-N Some Colony Name \n CityName - 923467 \n Contact No: 1234567890"
-        android:textSize="16dp"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tv_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:fontFamily="@font/comfortaa"
+                android:textColor="@color/black"
+                android:text="About our app"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_below="@+id/tv_about"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:fontFamily="@font/comfortaa"
+                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/bluepri"
+                android:gravity="center_horizontal"
+                android:text="A bunch of our country's top insights to enjoy with your coffee. Updated timely to keep you scheduled ;)"
+                android:textSize="16dp"
+                android:layout_centerHorizontal="true"/>
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_below="@+id/tv_description"
+                android:src="@drawable/team" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_image"
+                android:gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa"
+                android:layout_centerHorizontal="true"
+                android:text="Created by:-\n Acrolyte \n C-420-N Some Colony Name \n CityName - 923467 \n Contact No: 1234567890"
+                android:textSize="16dp"
+                />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
 
 
 

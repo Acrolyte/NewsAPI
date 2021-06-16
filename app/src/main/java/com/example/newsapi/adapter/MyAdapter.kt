@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapi.Models.Article
 import com.example.newsapi.R
 import com.example.newsapi.databinding.NewsItemBinding
-import com.example.newsapi.util.CheckConnect
+import com.example.newsapi.util.InternetConnectivity
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
@@ -50,7 +50,7 @@ class MyAdapter(private var myList: List<Article>, private var context: Context)
         holder.binding.tvItemTitle.text = myList[position].title
         Picasso.get().load(myList[position].urlToImage).into(holder.binding.ivItemImage)
         holder.itemView.setOnClickListener {
-            if(!CheckConnect.checkConnectivity(context)){
+            if(!InternetConnectivity.isNetworkAvailable(context)!!){
                 Snackbar.make(it,"Please check your Internet connection!!",Snackbar.LENGTH_SHORT).show()
             }else {
                 var bundle = Bundle()

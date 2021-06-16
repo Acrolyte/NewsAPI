@@ -1,6 +1,7 @@
 package com.example.newsapi.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,13 +33,7 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-    }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMainBinding.inflate(layoutInflater)
         setupRecyclerView()
         val repository = Repository(this.requireContext())
         val viewModelFactory = MainViewModelFactory(repository)
@@ -46,16 +41,30 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
         viewModel.getPost("in", "d4c4e2a3e66e4f4faebe8b09d000ccfb")
 
         viewModel.myresponse.observe(viewLifecycleOwner, Observer { response ->
+            Log.d("res",response.toString())
             if (response.isSuccessful) {
+                Log.d("successdata",response.body().toString())
                 exlist = response.body()?.articles!!
                 binding.pbBar.visibility = ProgressBar.GONE
                 response.body()?.let {
                     myAdapter?.setData(exlist)
                 }
             } else {
-                Toast.makeText(this.context, response.code(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Client offline", Toast.LENGTH_SHORT).show()
+                Log.d("cached-data",response.body().toString())
+                binding.pbBar.visibility = ProgressBar.GONE
+//                response.body()?.let {
+//                    myAdapter.setData(exlist)
+//                }
             }
         })
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentMainBinding.inflate(layoutInflater)
         return binding.root
     }
 

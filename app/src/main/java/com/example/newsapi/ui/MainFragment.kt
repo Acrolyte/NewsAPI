@@ -43,7 +43,7 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
         viewModel.myresponse.observe(viewLifecycleOwner, Observer { response ->
             Log.d("res",response.toString())
             if (response.isSuccessful) {
-                Log.d("successdata",response.body().toString())
+                Log.d("dekho",response.body().toString())
                 exlist = response.body()?.articles!!
                 binding.pbBar.visibility = ProgressBar.GONE
                 response.body()?.let {
@@ -51,7 +51,7 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
                 }
             } else {
                 Toast.makeText(this.context, "Client offline", Toast.LENGTH_SHORT).show()
-                Log.d("cached-data",response.body().toString())
+                Log.d("dekho",response.body().toString())
                 binding.pbBar.visibility = ProgressBar.GONE
 //                response.body()?.let {
 //                    myAdapter.setData(exlist)

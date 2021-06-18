@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/twig"
-        android:alpha="0.4"/>
+        android:alpha="0.2"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,17 +52,22 @@
                     android:id="@+id/til_1"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:textColorHint="@color/bluesec"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginVertical="2dp"
-                    android:hint="Email">
+                    android:hint="Email"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="clear_text"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:helperText="Required*"
+                    app:helperTextTextColor="@color/blueter">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
-                        android:textColor="@color/bluesec"
                         android:layout_height="match_parent"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -70,17 +75,21 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/bluesec"
                     android:layout_below="@id/til_1"
                     android:layout_marginVertical="2dp"
-                    android:hint="Password">
+                    android:hint="Password"
+                    app:errorEnabled="true"
+                    app:helperText="Required*"
+                    app:helperTextTextColor="@color/blueter"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
-                        android:textColor="@color/bluesec"
                         android:layout_height="match_parent"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -88,35 +97,44 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/bluesec"
                     android:layout_below="@id/til_2"
+                    app:errorEnabled="true"
+                    app:helperText="Required*"
+                    app:helperTextTextColor="@color/blueter"
                     android:layout_marginVertical="2dp"
-                    android:hint="Confirm Password">
+                    android:hint="Confirm Password"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="password_toggle">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_cnfrmpasswrd"
                         android:layout_width="match_parent"
-                        android:textColor="@color/bluesec"
                         android:layout_height="match_parent"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_4"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:textColorHint="@color/bluesec"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:helperText="Required*"
+                    app:helperTextTextColor="@color/blueter"
                     android:layout_height="match_parent"
                     android:layout_below="@id/til_3"
                     android:layout_marginVertical="2dp"
-                    android:hint="Age">
+                    android:hint="Age"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_age"
                         android:layout_width="match_parent"
-                        android:textColor="@color/bluesec"
                         android:layout_height="match_parent"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -124,53 +142,64 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColorHint="@color/bluesec"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:helperText="Required*"
+                    app:helperTextTextColor="@color/blueter"
                     android:layout_below="@id/til_4"
                     android:layout_marginVertical="2dp"
-                    android:hint="Phone Number">
+                    android:hint="Phone Number"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_phone"
                         android:layout_width="match_parent"
-                        android:textColor="@color/bluesec"
                         android:layout_height="match_parent"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_6"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:textColorHint="@color/bluesec"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/til_5"
                     android:layout_marginVertical="2dp"
-                    android:hint="Address">
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    android:hint="Address"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_address"
-                        android:textColor="@color/bluesec"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="text" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_7"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:textColorHint="@color/bluesec"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error"
                     android:layout_below="@id/til_6"
                     android:layout_marginVertical="2dp"
-                    android:hint="Bio">
+                    android:hint="Bio"
+                    android:textColorHint="@color/bluesec"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_bio"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textColor="@color/bluesec"
-                        android:inputType="text" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/bluesec" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -180,9 +209,9 @@
                 android:id="@+id/lay3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/lay2"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_below="@id/lay2">
+                android:layout_marginTop="20dp">
 
 
                 <android.widget.Button
@@ -200,7 +229,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
-                    android:indeterminateTint="@color/blueter"/>
+                    android:indeterminateTint="@color/blueter" />
 
             </RelativeLayout>
 

@@ -46,8 +46,9 @@ class MainFragment : Fragment() , MyAdapter.OnItemClickListener{
                 Log.d("dekho",response.body().toString())
                 exlist = response.body()?.articles!!
                 binding.pbBar.visibility = ProgressBar.GONE
+
                 response.body()?.let {
-                    myAdapter?.setData(exlist)
+                    myAdapter.setData(exlist)
                 }
             } else {
                 Toast.makeText(this.context, "Client offline", Toast.LENGTH_SHORT).show()

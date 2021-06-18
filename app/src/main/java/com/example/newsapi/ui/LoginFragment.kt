@@ -1,5 +1,6 @@
 package com.example.newsapi.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -51,6 +53,7 @@ class LoginFragment : Fragment() {
         } else {
             binding.loginButton.setOnClickListener() {
                 binding.loginButton.visibility = Button.GONE
+                closeKeyboard()
                 val email: String = binding.etEmail.text.toString().trim()
                 val passw: String = binding.etPassword.text.toString().trim()
 
@@ -73,6 +76,15 @@ class LoginFragment : Fragment() {
         binding.tvTextclickable.setOnClickListener {
             navController.navigate(R.id.action_loginFragment_to_signInFragment)
         }
+    }
+
+    private fun closeKeyboard() {
+        val inputManager: InputMethodManager =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(
+            requireActivity().currentFocus!!.windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
     }
 
     fun showToast(string: String) {

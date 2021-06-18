@@ -6,11 +6,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="bluepri">#023246</color>
-    <color name="bluesec">#d4d4ce</color>
-    <color name="blueter">#f6f6f6</color>
-    <color name="bluelight">#287094</color>
+    <color name="white">#ffffff</color>
+    <color name="bluepri">#692c00</color>
+    <color name="bluesec">#cc7722</color>
+    <color name="blueter">#c49102</color>
+    <color name="bluelight">#fde384</color>
 
 
 </resources>

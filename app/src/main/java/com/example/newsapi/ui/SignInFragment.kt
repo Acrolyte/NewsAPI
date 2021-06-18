@@ -161,7 +161,7 @@ class SignInFragment : Fragment() {
         val inputManager: InputMethodManager =
             requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputManager.hideSoftInputFromWindow(
-            requireActivity().currentFocus!!.windowToken,
+            requireActivity().currentFocus?.windowToken,
             InputMethodManager.HIDE_NOT_ALWAYS
         )
     }
